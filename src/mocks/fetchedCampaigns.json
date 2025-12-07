@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Kampania Buty Zimowe",
+    "keywords": ["buty zimowe", "buty męskie", "obuwie zimowe"],
+    "bid_amount": 1.20,
+    "fund": 50,
+    "status": true,
+    "town": "Warszawa",
+    "radius": 10
+  },
+  {
+    "name": "Promocja Smartwatchy",
+    "keywords": ["smartwatch", "zegarek elektroniczny", "wearables"],
+    "bid_amount": 0.85,
+    "fund": 35,
+    "status": true,
+    "town": "Kraków",
+    "radius": 15
+  },
+  {
+    "name": "Reklama Kawy Premium",
+    "keywords": ["kawa ziarnista", "kawa premium", "arabica"],
+    "bid_amount": 0.50,
+    "fund": 20,
+    "status": false,
+    "town": "Gdańsk",
+    "radius": 8
+  },
+  {
+    "name": "Akcesoria Gamingowe",
+    "keywords": ["myszka gamingowa", "klawiatura mechaniczna", "headset"],
+    "bid_amount": 1.00,
+    "fund": 60,
+    "status": true,
+    "town": "Poznań",
+    "radius": 12
+  }
+]
