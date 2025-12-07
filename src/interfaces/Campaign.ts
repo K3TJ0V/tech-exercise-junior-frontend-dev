@@ -4,6 +4,6 @@ export interface Campaign {
     bidAmount: number,
     fund: number,
     status: boolean,
-    towm: string,
+    town: string,
     radius: number
 }
