@@ -14,8 +14,8 @@ function MainPannel({ campaigns, handleDelete }: MainPannelProps) {
                 return (
                     <article key={id} className='main__campaign'>
                         <h3 className="main__campaign--name">{campaign.name}</h3>
-                        <span className='main__campaign--fund'>{campaign.fund}</span>
-                        <span className='main__campaign--bid'> {campaign.bidAmount}</span>
+                        <span className='main__campaign--fund'>${campaign.fund}</span>
+                        <span className='main__campaign--bid'> ${campaign.bidAmount}</span>
                         <ul className='main__campaign--keywords'>
                             {campaign.keywords.map((keyword) => {
                                 return (
@@ -23,9 +23,9 @@ function MainPannel({ campaigns, handleDelete }: MainPannelProps) {
                                 )
                             })}
                         </ul>
-                        <p className='main__campaign--status'>{campaign.status && "aktywna"}</p>
+                        <p className='main__campaign--status'>{campaign.status ? "aktywna" : "nie aktywna"}</p>
                         <strong className='main__campaign--town'>{campaign.town}</strong>
-                        <strong className='main__campaign--radius'> {campaign.radius}</strong>
+                        <strong className='main__campaign--radius'> {campaign.radius}km</strong>
                         <button className="main__campaign--delete" onClick={()=>{handleDelete(id)}}>delete</button>
                     </article>
                 )

@@ -23,6 +23,7 @@ function App() {
     data.forEach((campaign)=>{
       const id = service.createNew(campaign);
       if(campaign.status){
+        setBalance(prev => prev - campaign.fund);
         setActiveCamps(prev =>{
           const newActiveCamps = new Map(prev);
           newActiveCamps.set(id, campaign);
@@ -38,7 +39,9 @@ function App() {
     setCreatorVisibility(!creatorVisibility);
   }
   function handleDelete(id:number){
-    if(service.getSpecific(id)?.status){
+    const camp = service.getSpecific(id) 
+    if(camp?.status){
+      setBalance(balance + camp.fund);
       const updatedActiveCamps = activeCamps;
       updatedActiveCamps.delete(id);
       setActiveCamps(new Map(updatedActiveCamps));
@@ -46,11 +49,20 @@ function App() {
     service.delete(id);
     setCampaigns(new Map(service.getCamps())) 
   }
+  function handleCreation(camp : Campaign){
+    console.log(camp);
+    service.createNew(camp);
+    if(camp.status){
+      setBalance(balance - camp.fund)
+    }
+    setCampaigns(new Map(service.getCamps()));
+    setCreatorVisibility(!creatorVisibility);
+  }
 
   return (
     <>
       <HeadPannel balance={balance} showCreator={showCreator}/>
-      {creatorVisibility && <Creator/>}
+      {creatorVisibility && <Creator balance={balance} handleCreation={handleCreation}/>}
       {loading && "Loading..."}
       {campaigns && <MainPannel handleDelete={handleDelete} campaigns={campaigns}/>}
     </>
