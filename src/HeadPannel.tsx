@@ -2,15 +2,14 @@ import './styles/HeadPannel.scss';
 
 interface HeadPannelProps {
     balance: number;
+    showCreator: () => void;
 }
 
-function HeadPannel({ balance }: HeadPannelProps) {
-
-
+function HeadPannel({ balance, showCreator }: HeadPannelProps) {
     return (
         <header className='header'>
-            <h1 className="header__h1">Your campaigns</h1>
-            <span>Balance: ${balance}</span>
+            <span className='header__balance'>Balance: ${balance}</span>
+            <button className='balance_addCamp' onClick={showCreator}>Add new</button>
         </header>
     )
 }

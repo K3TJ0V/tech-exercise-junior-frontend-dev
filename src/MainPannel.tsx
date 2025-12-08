@@ -3,12 +3,13 @@ import './styles/MainPannel.scss'
 
 interface MainPannelProps {
     campaigns: Map<number, Campaign>;
+    handleDelete: (id: number) => void;
 }
 
-function MainPannel({ campaigns }: MainPannelProps) {
+function MainPannel({ campaigns, handleDelete }: MainPannelProps) {
     return (
         <main className='main'>
-            <h2 className="main__h2"></h2>
+            <h1 className="header__h1">Your campaigns</h1>
             {Array.from(campaigns.entries()).map(([id, campaign]) => {
                 return (
                     <article key={id} className='main__campaign'>
@@ -25,7 +26,7 @@ function MainPannel({ campaigns }: MainPannelProps) {
                         <p className='main__campaign--status'>{campaign.status && "aktywna"}</p>
                         <strong className='main__campaign--town'>{campaign.town}</strong>
                         <strong className='main__campaign--radius'> {campaign.radius}</strong>
-                        <span></span>
+                        <button className="main__campaign--delete" onClick={()=>{handleDelete(id)}}>delete</button>
                     </article>
                 )
             })}

@@ -7,9 +7,14 @@ export class CampaignService {
     getCamps() {
         return this.campaigns;
     }
+    getSpecific(id:number){
+        return this.campaigns.get(id);
+    }
     createNew(campaign: Campaign) {
+        const id = this.nextID;
         this.campaigns.set(this.nextID, campaign);
         this.nextID++;
+        return id;
     }
     update(index:number, updated:Partial<Campaign>){
         if(!this.campaigns.has(index)) return;

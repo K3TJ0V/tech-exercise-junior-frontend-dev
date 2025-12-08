@@ -25,7 +25,7 @@ function useFetchCampaigns(url: string, port: number) {
             }
         }
         getData();
-    }, [url, port])
+    }, [])
     return { data, loading, error }
 }
 
