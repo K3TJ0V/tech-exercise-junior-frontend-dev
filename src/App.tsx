@@ -92,8 +92,8 @@ function App() {
       <HeadPannel balance={balance} showCreator={showCreator} />
       {creatorVisibility && <Creator balance={balance} handleCreation={handleCreation} handleCancel={cancelForm} />}
       {editVisibility && <Editor edited={editedCamp} balance={balance} handleEdit={handleEdit} handleCancel={cancelForm} />}
-      {loading && "Loading..."}
-      {campaigns && <MainPannel handleDelete={handleDelete} handleEdit={showEditor} campaigns={campaigns} />}
+      {campaigns && <MainPannel handleDelete={handleDelete} handleEdit={showEditor} campaigns={campaigns} loading={loading} />}
+      
     </>
   )
 }

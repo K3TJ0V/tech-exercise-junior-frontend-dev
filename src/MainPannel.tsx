@@ -5,12 +5,14 @@ interface MainPannelProps {
     campaigns: Map<number, Campaign>;
     handleDelete: (id: number) => void;
     handleEdit: (id: number) => void;
+    loading: boolean;
 }
 
-function MainPannel({ campaigns, handleDelete, handleEdit }: MainPannelProps) {
+function MainPannel({ campaigns, handleDelete, handleEdit, loading}: MainPannelProps) {
     return (
         <main className='main'>
             <h1 className="main__h1">Your campaigns</h1>
+            {loading && <p className='loading'>Loading ...</p>}
             <div className="main__grid-wrapper">
             {Array.from(campaigns.entries()).map(([id, campaign]) => {
                 return (
