@@ -4,9 +4,10 @@ import './styles/MainPannel.scss'
 interface MainPannelProps {
     campaigns: Map<number, Campaign>;
     handleDelete: (id: number) => void;
+    handleEdit: (id: number) => void;
 }
 
-function MainPannel({ campaigns, handleDelete }: MainPannelProps) {
+function MainPannel({ campaigns, handleDelete, handleEdit }: MainPannelProps) {
     return (
         <main className='main'>
             <h1 className="header__h1">Your campaigns</h1>
@@ -27,6 +28,7 @@ function MainPannel({ campaigns, handleDelete }: MainPannelProps) {
                         <strong className='main__campaign--town'>{campaign.town}</strong>
                         <strong className='main__campaign--radius'> {campaign.radius}km</strong>
                         <button className="main__campaign--delete" onClick={()=>{handleDelete(id)}}>delete</button>
+                        <button className='main__campaign--edit' onClick={()=>{handleEdit(id)}}>edit</button>
                     </article>
                 )
             })}
