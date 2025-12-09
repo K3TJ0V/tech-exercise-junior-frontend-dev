@@ -10,9 +10,12 @@ import Creator from './Creator.tsx';
 import Editor from './Editor.tsx'
 
 function App() {
-  const { data, loading, error } = useFetchCampaigns("mock", 8000);
+  // useFetchCampaigns might receive endpoint and port to perform proper fetch
+  const { data, loading, error } = useFetchCampaigns();
   const [service] = useState(new CampaignService());
-  const [balance, setBalance] = useState<number>(25000);
+  // example balance, might be initialized with after user account 
+  // has been fetched
+  const [balance, setBalance] = useState<number>(10000);
   const [campaigns, setCampaigns] = useState<Map<number, Campaign>>(new Map());
   const [creatorVisibility, setCreatorVisibility] = useState<boolean>(false);
   const [editVisibility, setEditVisibility] = useState<boolean>(false);
@@ -34,7 +37,7 @@ function App() {
   }, [data, error])
 
   function showCreator() {
-    setCreatorVisibility(!creatorVisibility);
+    setCreatorVisibility(true);
   }
   function showEditor(index: number) {
     const edited = service.getSpecific(index)
@@ -42,7 +45,16 @@ function App() {
       setEditedCamp(edited);
     }
     setEditedIndex(index);
-    setEditVisibility(!editVisibility);
+    setEditVisibility(true);
+  }
+  function cancelForm(){
+    if(editedCamp !== undefined){
+      setEditedCamp(undefined);
+      setEditedIndex(-1);
+      setEditVisibility(false);
+    }else{
+      setCreatorVisibility(false);
+    }
   }
   function handleDelete(id: number) {
     const camp = service.getSpecific(id)
@@ -78,8 +90,8 @@ function App() {
   return (
     <>
       <HeadPannel balance={balance} showCreator={showCreator} />
-      {creatorVisibility && <Creator balance={balance} handleCreation={handleCreation} />}
-      {editVisibility && <Editor edited={editedCamp} balance={balance} handleEdit={handleEdit} />}
+      {creatorVisibility && <Creator balance={balance} handleCreation={handleCreation} handleCancel={cancelForm} />}
+      {editVisibility && <Editor edited={editedCamp} balance={balance} handleEdit={handleEdit} handleCancel={cancelForm} />}
       {loading && "Loading..."}
       {campaigns && <MainPannel handleDelete={handleDelete} handleEdit={showEditor} campaigns={campaigns} />}
     </>

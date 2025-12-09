@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Campaign } from "../interfaces/Campaign";
 import mockedData from '../mocks/fetchedCampaigns.json';
 
-function useFetchCampaigns(url: string, port: number) {
+function useFetchCampaigns() {
     const [data, setData] = useState<Campaign[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);

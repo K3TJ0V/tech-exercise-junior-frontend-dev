@@ -8,8 +8,11 @@ interface HeadPannelProps {
 function HeadPannel({ balance, showCreator }: HeadPannelProps) {
     return (
         <header className='header'>
-            <span className='header__balance'>Balance: ${balance}</span>
-            <button className='balance_addCamp' onClick={showCreator}>Add new</button>
+            <div className='header__balance-wrapper'>
+              <span className='header__balance'>Balance</span>
+              <span>${balance}</span>
+            </div>
+            <button className='header__addCamp' onClick={showCreator}>Add new</button>
         </header>
     )
 }

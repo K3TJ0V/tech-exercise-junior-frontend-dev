@@ -1,0 +1,228 @@
+@import "./variables.scss";
+
+.creator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    &__form {
+        background-color: $bg;
+        border: 2px solid #333;
+        border-radius: 12px;
+        padding: 1.5rem;
+        max-width: 400px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 0.75rem;
+        align-items: start;
+
+        label {
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+            padding-right: 0.5rem;
+            padding-top: 0.5rem;
+        }
+
+        .keyword-wrapper {
+            grid-column: 2;
+            position: relative;
+
+            &__suggestions {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: $bg-light;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                max-height: 200px;
+                overflow-y: auto;
+                z-index: 10;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                box-shadow: $high-el;
+
+                li {
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    transition: background-color 0.2s;
+
+                    &:hover {
+                        background-color: $bg-dark;
+                    }
+                }
+            }
+        }
+    }
+
+    &__balance {
+        grid-column: 1 / -1;
+        background-color: #e3f2fd;
+        padding: 0.75rem;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 0.95rem;
+        color: #1976d2;
+        border: 1px solid #90caf9;
+        margin-bottom: 0.5rem;
+
+        strong {
+            font-size: 1.1rem;
+            color: #0d47a1;
+        }
+    }
+
+    &__input {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        background-color: $bg-light;
+        box-shadow: $low-el;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        &--radius {
+            width: 80px;
+        }
+    }
+
+    &__town {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        background-color: $bg-light;
+        cursor: pointer;
+        box-shadow: $low-el;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+    }
+
+    &__radius-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__keywords {
+        margin-top: 0.5rem;
+    }
+
+    &__ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        &--keyword {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.35rem 0.7rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+
+            button {
+                background: none;
+                border: none;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                padding: 0 0.2rem;
+                font-size: 1rem;
+
+                &:hover {
+                    color: #ff4444;
+                }
+            }
+        }
+    }
+
+    &__status-wrapper {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: $bg-dark;
+        border-radius: 6px;
+
+        label {
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &__checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    &__submit,
+    &__cancel {
+        grid-column: 1 / -1;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #333;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.1s;
+        box-shadow: $button-shadow;
+
+        &:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 1px 0px 0px rgba(66, 68, 90, 1);
+        }
+    }
+
+    &__submit {
+        background-color: #4CAF50;
+        color: white;
+        margin-top: 0.5rem;
+
+        &:hover {
+            background-color: #45a049;
+        }
+    }
+
+    &__cancel {
+        background-color: #f44336;
+        color: white;
+
+        &:hover {
+            background-color: #da190b;
+        }
+    }
+}

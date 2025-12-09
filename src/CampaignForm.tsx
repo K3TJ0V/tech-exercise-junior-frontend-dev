@@ -1,16 +1,18 @@
 import { useState } from "react";
 import type { Campaign } from "./interfaces/Campaign";
+import "./styles/CampaignForm.scss"
 
 import Kwords from "./mocks/keywords.json";
 import Towns from "./mocks/towns.json";
 
-interface CreatorProps {
+interface CreatorFormProps {
     initValues?: Campaign;
     balance: number;
     onSubmit: (item: Campaign) => void;
+    onCancel: () => void;
 }
 
-function CreatorForm({ initValues, balance, onSubmit }: CreatorProps) {
+function CreatorForm({ initValues, balance, onSubmit, onCancel }: CreatorFormProps) {
     const [keywords, setKeywords] = useState<string[]>(initValues?.keywords || []);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [keywordInputValue, setKeywordInputValue] = useState<string>("");
@@ -75,21 +77,26 @@ function CreatorForm({ initValues, balance, onSubmit }: CreatorProps) {
         }
     }
 
+
     function handleStatusSwitch() {
-    const required = fund - currentlyUsed;
-    
-    if (!status && required > balance) {
-        alert("Insufficient balance to activate this campaign");
-        return;
+        const required = fund - currentlyUsed;
+        
+        if (!status && required > balance) {
+            alert("Insufficient balance to activate this campaign");
+            return;
+        }
+        setStatus(!status);
     }
-    setStatus(!status);
-}
 
     return (
         <section className="creator">
             <form className="creator__form" onSubmit={(e) => { handleSubmit(e) }}>
+                <div className="creator__balance">
+                    Available balance: <strong>${balance}</strong>
+                </div>                
                 <label htmlFor="name">Name: </label>
                 <input type="text" value={name} onChange={(e) => { setName(e.target.value) }} className="creator__input" name="name" id="name" required />
+                
                 <label htmlFor="keyword">Keyword: </label>
                 <div className="keyword-wrapper">
                     <input type="text" className="creator__input" name="keyword" id="keyword" value={keywordInputValue} onChange={handleKeywordsTypeahead} />
@@ -104,16 +111,19 @@ function CreatorForm({ initValues, balance, onSubmit }: CreatorProps) {
                         <ul className="creator__ul">
                             {keywords.map(keyword =>
                                 <li key={keyword} className="creator__ul--keyword">{keyword}
-                                    <button onClick={() => handleKeywordDelete(keyword)}>x</button>
+                                    <button type="button" onClick={() => handleKeywordDelete(keyword)}>x</button>
                                 </li>
                             )}
                         </ul>
                     </article>
                 </div>
+                
                 <label htmlFor="fund">Fund: </label>
                 <input type="number" value={fund ? fund : ""} onChange={(e) => { handleFundChange(e) }} className="creator__input" name="fund" id="fund" required />
+                
                 <label htmlFor="bidAmount">Bid amount: </label>
                 <input type="number" value={bidAmount ? bidAmount : ""} onChange={(e) => { setBidAmount(Number(e.target.value)) }} className="creator__input" name="bidAmount" id="bidAmount" required />
+                
                 <label htmlFor="town">Town: </label>
                 <select className="creator__town" value={town} onChange={(e) => { setTown(e.target.value) }} name="town" id="town" required>
                     <option value=""></option>
@@ -121,11 +131,19 @@ function CreatorForm({ initValues, balance, onSubmit }: CreatorProps) {
                         <option key={town} value={town}>{town}</option>
                     )}
                 </select>
+                
                 <label htmlFor="radius">Radius: </label>
-                <input type="number" value={radius ? radius : ""} onChange={(e) => { setRadius(Number(e.target.value)) }} className="creator__input" name="radius" id="radius" required />km
-                <label htmlFor="status">Active: </label>
-                <input type="checkbox" checked={status} onChange={handleStatusSwitch} className="creator__input" name="status" id="status" />
-                <button type="submit" className="creator__submit">Create</button>
+                <span className="creator__radius-wrapper">
+                    <input type="number" value={radius ? radius : ""} onChange={(e) => { setRadius(Number(e.target.value)) }} className="creator__input creator__input--radius" name="radius" id="radius" required /> km
+                </span>
+                
+                <div className="creator__status-wrapper">
+                    <label htmlFor="status">Active: </label>
+                    <input type="checkbox" checked={status} onChange={handleStatusSwitch} className="creator__checkbox" name="status" id="status" />
+                </div>
+                
+                <button type="submit" className="creator__submit">Apply</button>
+                <button type="button" className="creator__cancel" onClick={onCancel}>Cancel</button>
             </form>
         </section>
     )

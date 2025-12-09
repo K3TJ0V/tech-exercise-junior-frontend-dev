@@ -1,0 +1,149 @@
+@import "./variables.scss";
+
+.main {
+    margin-top: 10vh;
+    height: 90vh;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+
+    &__h1 {
+        text-align: center;
+    }
+
+    &__grid-wrapper {
+        display: grid;
+        justify-content: center;
+        gap: 40px;
+        padding: 0 20px;
+
+        @media (min-width: 1000px) {
+            grid-template-columns: 1fr 1fr;
+            padding: 0 50px;
+        }
+
+        @media (min-width: 1500px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (min-width: 2000px) {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+    }
+
+    &__campaign {
+        background-color: $bg;
+        box-shadow: $high-el;
+        padding: 12px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+
+        &--name {
+            text-align: center;
+        }
+
+        &--fund-wrapper,
+        &--bid-wrapper,
+        &--status-wrapper {
+            background-color: $bg-light;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: $high-el;
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+        &-key {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        &--keywords {
+            list-style: none;
+            width: 90%;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            box-shadow: $low-el;
+            padding: 12px;
+            border-radius: 12px;
+            background-color: $bg-dark;
+        }
+
+        &--keywordItem {
+            color: #fff;
+            padding: 6px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: inline-block;
+            background-color: #4CAF50;
+        }
+
+        &--location {
+            text-align: center;
+            font-weight: bold;
+
+            &-wrapper {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            &-separator {
+                margin: 0 10px;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &--town,
+        &--radius {
+            background-color: $bg-light;
+            box-shadow: $high-el;
+            padding: 8px;
+            border-radius: 12px;
+        }
+
+        &--buttons-wrapper {
+            display: flex;
+            gap: 15px;
+        }
+
+        &--delete,
+        &--edit {
+            padding: 4px 12px;
+            background-color: $bg-light;
+            border-radius: 12px;
+            box-shadow: $smallButton-shadow;
+            cursor: pointer;
+        }
+
+        &--delete:hover,
+        &--edit:hover {
+            background-color: $bg;
+        }
+    }
+}
+
+.fund-bid-wrapper {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hr {
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid rgb(177, 177, 177);
+}
+.active{
+    color: green;
+}
+.inactive{
+    color: red;
+}

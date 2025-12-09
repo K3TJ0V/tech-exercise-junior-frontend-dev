@@ -1,0 +1,39 @@
+@import "./variables.scss";
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    @media (min-width: 1000px) {
+        width: 80vw;
+    }
+    height: 10vh;
+    transform: translateX(-50%);
+    background-color: $bg;
+    box-shadow: $high-el;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__balance-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $bg-light;
+        box-shadow: $high-el;
+        padding: 8px;
+        border-radius: 12px;
+    }
+    &__addCamp{
+        border: 1px solid black;
+        padding: 6px;
+        border-radius: 12px;
+        background-color: $bg-light;
+        box-shadow: $button-shadow;
+    }
+    &__addCamp:hover{
+        background-color: $bg;
+        cursor: pointer;
+    }
+}
